@@ -1,0 +1,255 @@
+---
+title: How I Built an OpenClaw Agent Team That Does Real Work
+summary: Why I stopped treating OpenClaw like one giant assistant and started using it as a small routed system for research, execution, critique, continuity, and systems work.
+date: 2026-04-03
+published: true
+tags:
+  - openclaw
+  - agents
+  - workflows
+  - automation
+  - ai
+---
+
+I did not end up using OpenClaw as one all-purpose assistant.
+
+Pretty quickly, it turned into something more useful: a small, specialized agent team with one front-facing operator and a set of internal lanes for research, execution, critique, continuity, and systems work.
+
+That distinction matters. A lot of writing about “multi-agent systems” dissolves into roleplay, hype, or vague claims about the future of work. That is not what I’m interested in. What I wanted was a way to structure real ongoing work so that different kinds of tasks could be routed, executed, reviewed, and tracked without turning every thread into one giant prompt.
+
+OpenClaw is what made that practical.
+
+## Why I stopped thinking in terms of one assistant
+
+A single general AI is fine for quick questions, drafting, and occasional bursts of help. But once the work gets longer, messier, or more varied, one context starts to do too much at once.
+
+The problems show up fast:
+
+- research gets mixed with implementation
+- critique gets softened by the same context that produced the draft
+- recurring maintenance disappears when nobody is actively chatting
+- long threads become bloated and unfocused
+- everything starts sounding like the same voice doing every job
+
+I wanted something more operational than that.
+
+The answer was not “make the prompt bigger.” The answer was specialization.
+
+## The setup
+
+At the top is **Cass**, the front-facing operator. That is the layer I actually work with. Cass handles the conversation, makes routing decisions, tracks thread state, and owns the judgment about when to stay inline, when to delegate, and when to stop and ask for approval.
+
+Under that, there are specialized lanes:
+
+- **Zero Cool** for implementation and build work
+- **Acid Burn** for research and context
+- **Phantom Phreak** for drafting, summaries, and packaging
+- **Cereal Killer** for systems and operational debugging
+- **Lord Nikon** for second-pass critique
+- **Blade** for continuity and accountability
+- **Razor** for stuck-thread recovery and blocker extraction
+
+Those names are shorthand. The useful part is not the names. The useful part is that each lane has a job.
+
+That means work can be routed with a reason:
+
+- unclear facts go to research
+- code changes go to implementation
+- drafts get reviewed by critique
+- recurring state gets tracked by continuity
+- system weirdness goes to ops
+
+That separation turns out to matter more than people think.
+
+## What makes this OpenClaw-specific
+
+This would be much less interesting if it were just “I have a prompt for each role.”
+
+What makes it work is that OpenClaw gives the system actual operating structure:
+
+- spawned subagents with separate sessions
+- shared workspace files
+- memory and continuity across threads
+- cron-based recurring work
+- tools that can act in the local environment
+- a real distinction between the front-facing session and delegated runs
+- explicit approval boundaries for consequential actions
+
+That changes the character of the whole thing.
+
+This is not a single chatbot improvising a cast of personalities. It is a routed system running on persistent files, background tasks, and separate working contexts. The team framing is useful because the work is actually divided.
+
+## How the work flows
+
+In practice, the system is pretty simple.
+
+A task comes in. Cass decides whether it should stay in the main thread or get routed. If it gets routed, it goes to the lane that matches the actual bottleneck.
+
+That matters because the right route is not always the most obvious surface category.
+
+Sometimes the bottleneck is:
+
+- missing information
+- implementation complexity
+- review risk
+- continuity
+- packaging
+- systems friction
+
+The team works best when routing is based on that bottleneck rather than vague vibes.
+
+For bigger or riskier work, there is also planning and approval discipline. The point is not to create bureaucracy for its own sake. The point is to keep the system from becoming a mess once it becomes capable enough to do real things.
+
+That governance layer matters more than the personalities do.
+
+## What the team is actually useful for
+
+The clearest value so far has been in a handful of recurring categories.
+
+### Research and synthesis
+
+Some threads start with uncertainty. The facts are incomplete, the options are fuzzy, or the actual problem has not been cleanly named yet.
+
+That is where a dedicated research lane helps. Instead of trying to think, search, summarize, and decide in one breath, the system can split that work off and return something bounded: a memo, a comparison, a framing, a recommendation.
+
+That makes the main thread less noisy and the final decision more grounded.
+
+### Implementation work
+
+When something needs to be built, changed, migrated, or cleaned up, it helps to hand that to a lane built for execution rather than making the main conversation try to do research, design, coding, and review all at once.
+
+The useful output here is not “an AI thinks this is possible.” It is a patch, a commit, a changed file, a working build, or a deploy-ready artifact.
+
+### Drafting and packaging
+
+Once something has been figured out, there is often still a separate job of turning it into:
+
+- a post
+- a summary
+- a handoff
+- a user-facing explanation
+- a cleaner artifact
+
+That is different work from either research or implementation. Treating it as its own lane helps keep writing from turning into a side effect of whatever the system was already doing.
+
+### Critique
+
+One of the most useful roles is a separate critique pass. A second lane looking for failure modes, weak assumptions, UX drift, or missing caveats is often more valuable than one assistant trying to self-correct in the same context that produced the first answer.
+
+This is especially useful for anything that touches:
+
+- design
+- product judgment
+- public writing
+- system changes
+- risky decisions
+
+### Continuity and background operations
+
+This is where OpenClaw starts to feel genuinely different from a normal assistant. Because the system has file-backed memory, scheduled jobs, and background task support, some work can continue between chats:
+
+- recurring checks
+- review loops
+- maintenance
+- reminders
+- lightweight monitoring
+- periodic cleanup or freshness work
+
+That pushes it beyond “assistant waiting for prompts” into something closer to an operating layer.
+
+## Why multiple agents are better than one big prompt
+
+The strongest reason is not that it feels cooler. It is that role separation reduces drift.
+
+A research lane can stay in research mode.  
+An implementation lane can stay in build mode.  
+A critique lane can be narrower and sharper because it does not have to also be helpful, generative, and agreeable in the same moment.
+
+That leads to better outputs because each run has:
+
+- a clearer purpose
+- a narrower context
+- a more legible return artifact
+- and a better chance of being reviewed cleanly
+
+One giant prompt can imitate a lot of this, but it usually blurs under pressure.
+
+## What surprised me
+
+A few things became clear faster than I expected.
+
+### Specialization helps more than bigger prompts
+
+The biggest gain was not “better personality.” It was separation of concerns. Once research, implementation, critique, and packaging had distinct lanes, the work got cleaner.
+
+### Orchestration matters as much as model quality
+
+A stronger model in one giant context is not the same thing as a system that can route work, preserve artifacts, and come back with bounded outputs.
+
+### The useful magic is mundane
+
+The parts that matter most are not mystical:
+
+- routing
+- memory
+- continuity
+- file discipline
+- review structure
+- recurring work
+- clear handoffs
+
+That is less exciting than AI mythology, but much more useful.
+
+## What still breaks
+
+This is useful, not frictionless.
+
+Things still go wrong:
+
+- context can drift
+- subagents can overbuild
+- critique can come too late
+- background work can create noise if it is not governed carefully
+- tool friction still matters
+- taste still requires human judgment
+- some tasks look separable until they are not
+
+And none of this removes the need for human signoff on consequential actions.
+
+That is important enough to say plainly: the system works best when it is governed. Planning, review, approval, and cleanup are not incidental details. They are the difference between “interesting” and “actually usable.”
+
+## Why I think this matters
+
+The thing I find most interesting is not the fantasy of a single super-assistant that does everything.
+
+It is the possibility of small, task-shaped, opinionated agent systems that can actually operate inside a real environment:
+
+- with files
+- with memory
+- with schedules
+- with tooling
+- with boundaries
+- with recurring work
+- with a human still making the consequential calls
+
+That feels much more believable than the usual AI pitch.
+
+Less omniscient oracle, more working crew.
+
+## If you’re building your own
+
+My advice is simple:
+
+- start with roles, not personalities
+- route by bottleneck, not by surface topic
+- keep real artifacts
+- build review into the system
+- use memory and files, not vibes
+- make the system earn more autonomy over time
+- don’t confuse a fun prompt setup with an operating model
+
+And above all: judge it by whether it makes real work cleaner.
+
+If it cannot help produce better drafts, tighter research, cleaner execution, more reliable review, or useful recurring maintenance, then it is not a team. It is just a story you are telling yourself about your tools.
+
+That story can be fun. It is not the same thing as real work.
