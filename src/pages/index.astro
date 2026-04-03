@@ -2,41 +2,36 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const posts = (await getCollection('posts', ({ data }) => data.published !== false))
-  .map((post) => ({ ...post, slug: post.id.replace(/\.md$/, '') }))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const posts = (await getCollection('posts', ({ data }) => data.published !== false)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
 ---
 <BaseLayout>
   <div class="page-stack">
     <section class="section-shell section-shell-feed">
       <div>
         <p class="eyebrow">Posts</p>
-        <h1></h1>
       </div>
-      <div class="card-grid">
-        {posts.map((post, index) => {
-          const isFeatured = index === 0;
-
-          return (
-            <article class={`content-card ${isFeatured ? 'content-card-featured' : ''}`}>
-              <div class={`post-card-layout ${post.data.image ? 'has-thumb' : ''} ${isFeatured ? 'is-featured' : ''}`}>
-                <div class="post-card-copy">
-                  <div class="content-meta">
-                    <span>{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                  </div>
-                  <h3><a href={`/posts/${post.slug}/`}>{post.data.title}</a></h3>
-                  <p>{post.data.summary}</p>
-                  <a href={`/posts/${post.slug}/`} class="inline-link">Read post</a>
+      <div class="feed-stack">
+        {posts.map((post) => (
+          <article class="content-card content-card-feed">
+            <div class={`post-card-layout post-card-layout-feed ${post.data.image ? 'has-thumb' : ''}`}>
+              <div class="post-card-copy">
+                <div class="content-meta">
+                  <span>{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                 </div>
-                {post.data.image && (
-                  <a href={`/posts/${post.slug}/`} class="post-card-thumb" aria-label={`Read ${post.data.title}`}>
-                    <img src={post.data.image} alt={post.data.title} loading={isFeatured ? 'eager' : 'lazy'} />
-                  </a>
-                )}
+                <h3><a href={`/posts/${post.slug}/`}>{post.data.title}</a></h3>
+                <p>{post.data.summary}</p>
+                <a href={`/posts/${post.slug}/`} class="inline-link">Read post</a>
               </div>
-            </article>
-          );
-        })}
+              {post.data.image && (
+                <a href={`/posts/${post.slug}/`} class="post-card-thumb post-card-thumb-feed" aria-label={`Read ${post.data.title}`}>
+                  <img src={post.data.image} alt={post.data.title} loading="lazy" />
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   </div>
