@@ -14,25 +14,29 @@ const posts = (await getCollection('posts', ({ data }) => data.published !== fal
         <h1></h1>
       </div>
       <div class="card-grid">
-        {posts.map((post) => (
-          <article class="content-card">
-            <div class={`post-card-layout ${post.data.image ? 'has-thumb' : ''}`}>
-              <div class="post-card-copy">
-                <div class="content-meta">
-                  <span>{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+        {posts.map((post, index) => {
+          const isFeatured = index === 0;
+
+          return (
+            <article class={`content-card ${isFeatured ? 'content-card-featured' : ''}`}>
+              <div class={`post-card-layout ${post.data.image ? 'has-thumb' : ''} ${isFeatured ? 'is-featured' : ''}`}>
+                <div class="post-card-copy">
+                  <div class="content-meta">
+                    <span>{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                  </div>
+                  <h3><a href={`/posts/${post.slug}/`}>{post.data.title}</a></h3>
+                  <p>{post.data.summary}</p>
+                  <a href={`/posts/${post.slug}/`} class="inline-link">Read post</a>
                 </div>
-                <h3><a href={`/posts/${post.slug}/`}>{post.data.title}</a></h3>
-                <p>{post.data.summary}</p>
-                <a href={`/posts/${post.slug}/`} class="inline-link">Read post</a>
+                {post.data.image && (
+                  <a href={`/posts/${post.slug}/`} class="post-card-thumb" aria-label={`Read ${post.data.title}`}>
+                    <img src={post.data.image} alt={post.data.title} loading={isFeatured ? 'eager' : 'lazy'} />
+                  </a>
+                )}
               </div>
-              {post.data.image && (
-                <a href={`/posts/${post.slug}/`} class="post-card-thumb" aria-label={`Read ${post.data.title}`}>
-                  <img src={post.data.image} alt={post.data.title} loading="lazy" />
-                </a>
-              )}
-            </div>
-          </article>
-        ))}
+            </article>
+          );
+        })}
       </div>
     </section>
   </div>
