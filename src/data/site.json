@@ -1,0 +1,27 @@
+{
+  "name": "NeilofNeils",
+  "domain": "https://neilofneils.com",
+  "email": "neil@neilofneils.com",
+  "title": "NeilofNeils",
+  "description": "A posts-only feed with no extra public sections pretending to be fuller than they are.",
+  "intro": "A simple local publishing flow for posts, nothing else.",
+  "socialLinks": [
+    {
+      "label": "GitHub",
+      "href": "https://github.com/neilofneils404"
+    },
+    {
+      "label": "𝕏",
+      "href": "https://x.com/wneilofneils"
+    },
+    {
+      "label": "Email",
+      "href": "mailto:hello@neilofneils.com"
+    }
+  ],
+  "now": [
+    "Keeping the publishing flow local, simple, and easy to use once real material starts moving in.",
+    "Running the public site as one posts feed instead of splitting attention across thin sections.",
+    "Cutting public fluff until there is enough material to earn anything beyond the feed."
+  ]
+}

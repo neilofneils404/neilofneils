@@ -1,0 +1,10 @@
+---
+import { siteConfig } from '../data/site';
+---
+<footer class="site-footer" aria-label="Elsewhere online">
+  <div class="footer-links">
+    {siteConfig.socialLinks.filter((link) => ['GitHub', '𝕏', 'X'].includes(link.label)).map((link) => (
+      <a href={link.href}>{link.label}</a>
+    ))}
+  </div>
+</footer>

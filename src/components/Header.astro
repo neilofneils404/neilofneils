@@ -1,0 +1,13 @@
+---
+import { headerLinks, siteConfig } from '../data/site';
+---
+<header class="site-header">
+  <div>
+    <a href="/" class="brand">{siteConfig.name}</a>
+  </div>
+  <nav class="main-nav" aria-label="External links">
+    {headerLinks.map((item) => (
+      <a href={item.href} target="_blank" rel="noreferrer">{item.label}</a>
+    ))}
+  </nav>
+</header>
