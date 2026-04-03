@@ -9,6 +9,7 @@ tags:
   - workflows
   - automation
   - ai
+image: /images/posts/openclaw-team-post-header.jpg
 ---
 
 I did not end up using OpenClaw as one all-purpose assistant.
