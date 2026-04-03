@@ -12,7 +12,7 @@ tags:
   - dishcache
 ---
 
-I’ve been building a recipe app called **DishCache**.
+I’ve been building a recipe app called **[DishCache](https://dishcache.com)**.
 
 The idea is blunt on purpose: I want a better way to save recipes.
 
@@ -163,3 +163,5 @@ Find it later.
 Cook.
 
 That’s DishCache.
+
+If you want to see it, it’s live at **[dishcache.com](https://dishcache.com)**.
