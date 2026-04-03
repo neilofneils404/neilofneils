@@ -2,9 +2,9 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const posts = (await getCollection('posts', ({ data }) => data.published !== false)).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
-);
+const posts = (await getCollection('posts', ({ data }) => data.published !== false))
+  .map((post) => ({ ...post, slug: post.id.replace(/\.md$/, '') }))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 <BaseLayout>
   <div class="page-stack">
@@ -21,12 +21,12 @@ const posts = (await getCollection('posts', ({ data }) => data.published !== fal
                 <div class="content-meta">
                   <span>{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                 </div>
-                <h3><a href={`/posts/${post.id.replace(/\.md$/, '')}/`}>{post.data.title}</a></h3>
+                <h3><a href={`/posts/${post.slug}/`}>{post.data.title}</a></h3>
                 <p>{post.data.summary}</p>
-                <a href={`/posts/${post.id.replace(/\.md$/, '')}/`} class="inline-link">Read post</a>
+                <a href={`/posts/${post.slug}/`} class="inline-link">Read post</a>
               </div>
               {post.data.image && (
-                <a href={`/posts/${post.id.replace(/\.md$/, '')}/`} class="post-card-thumb" aria-label={`Read ${post.data.title}`}>
+                <a href={`/posts/${post.slug}/`} class="post-card-thumb" aria-label={`Read ${post.data.title}`}>
                   <img src={post.data.image} alt={post.data.title} loading="lazy" />
                 </a>
               )}
