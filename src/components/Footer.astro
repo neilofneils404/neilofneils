@@ -1,9 +1,9 @@
 ---
-import { siteConfig } from '../data/site';
+import { headerLinks } from '../data/site';
 ---
 <footer class="site-footer" aria-label="Elsewhere online">
   <div class="footer-links">
-    {siteConfig.socialLinks.map((link) => (
+    {headerLinks.map((link) => (
       <a href={link.href}>{link.label}</a>
     ))}
   </div>

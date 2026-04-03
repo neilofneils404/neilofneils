@@ -48,26 +48,26 @@ img { max-width: 100%; display: block; }
 .card-grid { display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap:1rem; }
 .content-card { height:100%; padding:1.05rem; background: var(--surface-strong); border:1px solid var(--border); border-radius: var(--radius-sm); transition: transform 150ms ease, border-color 150ms ease; }
 .content-card:hover { transform: translateY(-2px); }
-.content-card-featured { grid-column: 1 / -1; }
+.content-card-featured { grid-column: 1 / -1; padding: .9rem 1rem; }
 .content-card h3 { font-size:1.35rem; margin:0 0 .65rem; }
 .content-card h3 a { color: var(--text); }
 .post-card-layout { display:grid; grid-template-columns:minmax(0,1fr); gap:.9rem; height:100%; }
 .post-card-layout.has-thumb { grid-template-columns:minmax(0,1fr) 7rem; align-items:start; }
 .post-card-layout.is-featured.has-thumb {
-  grid-template-columns: minmax(0, 1.2fr) minmax(15rem, .9fr);
-  align-items: stretch;
-  gap: 1.2rem;
+  grid-template-columns: minmax(0, 1.05fr) minmax(12rem, .72fr);
+  align-items: start;
+  gap: 1rem;
 }
 .post-card-layout.is-featured .post-card-copy {
-  align-content: center;
-  gap: .85rem;
+  align-content: start;
+  gap: .7rem;
 }
 .post-card-layout.is-featured h3 {
-  font-size: clamp(1.55rem, 2.2vw, 2rem);
-  max-width: 18ch;
+  font-size: clamp(1.35rem, 1.8vw, 1.7rem);
+  max-width: 16ch;
 }
 .post-card-layout.is-featured p {
-  max-width: 58ch;
+  max-width: 46ch;
 }
 .post-card-copy p, .article-summary { margin:0; }
 .content-meta { color: var(--accent); font-size:.8rem; }
@@ -75,7 +75,8 @@ img { max-width: 100%; display: block; }
 .post-card-thumb { aspect-ratio:4/5; overflow:hidden; border-radius:3px; background: rgba(255,255,255,.04); }
 .post-card-layout.is-featured .post-card-thumb {
   aspect-ratio: 16 / 10;
-  min-height: 100%;
+  max-width: 22rem;
+  justify-self: end;
 }
 .post-card-thumb img { width:100%; height:100%; object-fit:cover; }
 .article-shell { padding: clamp(1.35rem, 3vw, 2.4rem); }
