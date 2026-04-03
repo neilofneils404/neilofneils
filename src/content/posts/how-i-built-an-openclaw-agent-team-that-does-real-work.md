@@ -80,6 +80,49 @@ That changes the character of the whole thing.
 
 This is not a single chatbot improvising a cast of personalities. It is a routed system running on persistent files, background tasks, and separate working contexts. The team framing is useful because the work is actually divided.
 
+## How I actually built it
+
+The setup itself is not especially mystical. The basic move was to stop treating the system like one general-purpose assistant and start treating it like a routed operating model.
+
+I began with one front-facing operator: Cass. That is the layer that handles the live conversation, decides what kind of work is actually being asked for, and routes it when the task would benefit from specialization.
+
+From there, I broke the work into a small set of functional lanes:
+
+- research and context gathering
+- implementation and build work
+- drafting and packaging
+- critique and second-pass review
+- systems and operational debugging
+- continuity and accountability
+
+The important part was not inventing a lot of personality. The important part was giving each lane a narrow job and a clear kind of return artifact.
+
+That means delegated work is expected to come back as something bounded:
+
+- a memo
+- a recommendation
+- a patch
+- a summary
+- a critique
+- a concrete next step
+
+That one change matters a lot. It keeps delegation from turning into parallel mush.
+
+The other big change was learning to route by bottleneck instead of by topic. If the real problem is uncertainty, I route to research. If the real problem is implementation, I route to build. If the work is likely to benefit from pressure-testing, I route to critique. That sounds obvious, but it took a while to get right.
+
+The current system is primarily running on **OpenAI Codex over OAuth, using GPT-5.4**, but the model is only part of what makes the setup useful. What made the setup useful was giving the model an operating structure: one front-facing agent, specialized lanes underneath, persistent files and memory, recurring jobs where needed, and explicit boundaries around planning, review, and approval.
+
+If someone wanted to build something similar in their own setup, my advice would be:
+
+1. start with one operator  
+2. define a few narrow functional lanes  
+3. route by bottleneck, not by vibes  
+4. require bounded outputs  
+5. keep human approval for consequential actions  
+6. let the system earn more autonomy over time instead of pretending it has it on day one  
+
+That is a much more reliable path than trying to prompt one giant assistant into acting like a whole organization.
+
 ## How the work flows
 
 In practice, the system is pretty simple.
@@ -138,7 +181,6 @@ That is different work from either research or implementation. Treating it as it
 One of the most useful roles is a separate critique pass. A second lane looking for failure modes, weak assumptions, UX drift, or missing caveats is often more valuable than one assistant trying to self-correct in the same context that produced the first answer.
 
 This is especially useful for anything that touches:
-
 - design
 - product judgment
 - public writing
@@ -167,7 +209,6 @@ An implementation lane can stay in build mode.
 A critique lane can be narrower and sharper because it does not have to also be helpful, generative, and agreeable in the same moment.
 
 That leads to better outputs because each run has:
-
 - a clearer purpose
 - a narrower context
 - a more legible return artifact
