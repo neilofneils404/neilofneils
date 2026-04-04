@@ -1,11 +1,19 @@
 ---
 import { headerLinks, siteConfig } from '../data/site';
+
+const primaryLinks = [
+  { label: 'Posts', href: '/' },
+  { label: 'About', href: '/about/' }
+];
 ---
 <header class="site-header">
   <div>
     <a href="/" class="brand">{siteConfig.name}</a>
   </div>
-  <nav class="main-nav" aria-label="External links">
+  <nav class="main-nav" aria-label="Site navigation">
+    {primaryLinks.map((item) => (
+      <a href={item.href}>{item.label}</a>
+    ))}
     {headerLinks.map((item) => (
       <a href={item.href} target="_blank" rel="noreferrer">{item.label}</a>
     ))}

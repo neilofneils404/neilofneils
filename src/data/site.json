@@ -3,20 +3,34 @@
   "domain": "https://neilofneils.com",
   "email": "neil@neilofneils.com",
   "title": "NeilofNeils",
-  "description": "A posts-only feed with no extra public sections pretending to be fuller than they are.",
-  "intro": "A simple local publishing flow for posts, nothing else.",
+  "description": "Writing and projects from Neil Williams on practical software, AI workflows, legal discovery systems, and useful tools that do real work.",
+  "intro": "I build practical software and AI systems with a bias for clarity, usable tools, and real workflows.",
+  "positioning": "This is where I write about products, local-first AI, legal discovery systems, and the tools I am building.",
+  "about": {
+    "name": "Neil Williams",
+    "headline": "Builder, operator, and systems thinker working across software, AI workflows, and legal discovery data.",
+    "summary": [
+      "I like building tools that reduce friction, preserve signal, and make real work easier to do.",
+      "My projects tend to live where product judgment, technical implementation, and workflow reality meet: practical software, AI systems, discovery tooling, and small useful infrastructure."
+    ],
+    "currently": [
+      "Building products and experiments that stay useful in the real world.",
+      "Working on AI orchestration, retrieval, and workflow design that can survive contact with actual use.",
+      "Writing about the systems, tradeoffs, and projects that seem worth showing in public."
+    ]
+  },
   "socialLinks": [
     {
       "label": "GitHub",
       "href": "https://github.com/neilofneils404"
     },
     {
-      "label": "𝕏",
+      "label": "X",
       "href": "https://x.com/wneilofneils"
     },
     {
       "label": "Email",
-      "href": "mailto:hello@neilofneils.com"
+      "href": "mailto:neil@neilofneils.com"
     }
   ],
   "now": [

@@ -5,6 +5,13 @@ export type SocialLink = {
   href: string;
 };
 
+export type AboutConfig = {
+  name: string;
+  headline: string;
+  summary: string[];
+  currently: string[];
+};
+
 export type SiteConfig = {
   name: string;
   domain: string;
@@ -12,9 +19,11 @@ export type SiteConfig = {
   title: string;
   description: string;
   intro: string;
+  positioning: string;
+  about: AboutConfig;
   socialLinks: SocialLink[];
   now: string[];
 };
 
 export const siteConfig = site as SiteConfig;
-export const headerLinks = siteConfig.socialLinks.filter((link) => ['GitHub', '𝕏', 'X'].includes(link.label));
+export const headerLinks = siteConfig.socialLinks.filter((link) => ['GitHub', 'X', 'Email'].includes(link.label));

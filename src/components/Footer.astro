@@ -1,10 +1,14 @@
 ---
-import { headerLinks } from '../data/site';
+import { headerLinks, siteConfig } from '../data/site';
 ---
 <footer class="site-footer" aria-label="Elsewhere online">
+  <div class="footer-meta">
+    <p>{siteConfig.about.name}</p>
+    <span>{siteConfig.about.headline}</span>
+  </div>
   <div class="footer-links">
     {headerLinks.map((link) => (
-      <a href={link.href}>{link.label}</a>
+      <a href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noreferrer' : undefined}>{link.label}</a>
     ))}
   </div>
 </footer>

@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../data/site';
+---
+<BaseLayout title="About" description={`${siteConfig.about.name} — ${siteConfig.about.headline}`}>
+  <article class="article-shell about-shell">
+    <div class="article-header about-header">
+      <p class="eyebrow">About</p>
+      <h1>{siteConfig.about.name}</h1>
+      <p class="article-summary">{siteConfig.about.headline}</p>
+    </div>
+
+    <div class="article-body about-body">
+      {siteConfig.about.summary.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+
+      <section class="about-section">
+        <h2>Currently</h2>
+        <ul>
+          {siteConfig.about.currently.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="about-section">
+        <h2>Elsewhere</h2>
+        <ul>
+          {siteConfig.socialLinks.map((link) => (
+            <li>
+              <a href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noreferrer' : undefined}>
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
