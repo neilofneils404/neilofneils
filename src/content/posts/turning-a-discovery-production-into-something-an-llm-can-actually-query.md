@@ -1,7 +1,7 @@
 ---
 title: Turning a discovery production into something an LLM can actually query
 summary: A practical field report on taking a Relativity-style discovery export, extracting and normalizing the text, indexing it locally, and letting a model answer from retrieval instead of bluffing.
-date: 2026-04-03
+date: 2026-04-03T09:00:00-04:00
 published: true
 image: ../../assets/posts/discovery-llm-header.png
 tags:

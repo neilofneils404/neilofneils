@@ -1,7 +1,7 @@
 ---
 title: "DishCache: Saving the Recipe, Not the Life Story"
 summary: "DishCache is a recipe app built around a simple idea: save recipes you care about, capture the useful parts from links, and strip away the bloated blog narrative that gets in the way."
-date: 2026-04-03
+date: 2026-04-03T14:30:00-04:00
 published: true
 image: ../../assets/posts/dishcache-header.jpg
 tags:

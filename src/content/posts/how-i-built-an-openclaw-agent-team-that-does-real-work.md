@@ -1,7 +1,7 @@
 ---
 title: How I Built an OpenClaw Agent Team That Does Real Work
 summary: Why I stopped treating OpenClaw like one giant assistant and started using it as a small routed system for research, execution, critique, continuity, and systems work.
-date: 2026-04-03
+date: 2026-04-03T12:00:00-04:00
 published: true
 tags:
   - openclaw

@@ -3,11 +3,11 @@
   "domain": "https://neilofneils.com",
   "email": "neil@neilofneils.com",
   "title": "NeilofNeils",
-  "description": "Writing and projects from Neil Williams on practical software, AI workflows, legal discovery systems, and useful tools that do real work.",
+  "description": "Writing and projects on practical software, AI workflows, legal discovery systems, and useful tools that do real work.",
   "intro": "I build practical software and AI systems with a bias for clarity, usable tools, and real workflows.",
   "positioning": "This is where I write about products, local-first AI, legal discovery systems, and the tools I am building.",
   "about": {
-    "name": "Neil Williams",
+    "name": "NeilofNeils",
     "headline": "Builder, operator, and systems thinker working across software, AI workflows, and legal discovery data.",
     "summary": [
       "I like building tools that reduce friction, preserve signal, and make real work easier to do.",
@@ -29,8 +29,8 @@
       "href": "https://x.com/wneilofneils"
     },
     {
-      "label": "Email",
-      "href": "mailto:neil@neilofneils.com"
+      "label": "Contact",
+      "href": "https://x.com/wneilofneils"
     }
   ],
   "now": [
