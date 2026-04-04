@@ -112,6 +112,36 @@ The other big change was learning to route by bottleneck instead of by topic. If
 
 The current system is primarily running on **OpenAI Codex over OAuth, using GPT-5.4**, but the model is only part of what makes the setup useful. What made the setup useful was giving the model an operating structure: one front-facing agent, specialized lanes underneath, persistent files and memory, recurring jobs where needed, and explicit boundaries around planning, review, and approval.
 
+### What the file layer actually looks like
+
+One thing I wish more people explained is that systems like this do not become real because you named a few subagents. They become real because you create a file-backed operating layer around them.
+
+In my case, that includes things like:
+
+- an **identity/behavior file** for the front-facing operator
+- an **agent governance file** that defines gates, routing discipline, and hard boundaries
+- a **team roster file** that defines what each lane is actually for
+- a **bootstrap/startup file** that tells the system what to load first and what context matters before acting
+- a **memory layer** that stores factual continuity and past decisions
+- an **ops layer** with open loops, delegation records, work ledgers, handoff templates, and review packets
+- a **scheduler map** so recurring jobs have one clear source of truth
+
+If you are building this yourself, the exact filenames do not matter. The categories do.
+
+For example, in an OpenClaw-style setup, you probably want equivalents of:
+
+- `AGENTS.md` for routing/governance rules
+- `TEAM.md` for role definitions and lane ownership
+- `BOOTSTRAP.md` for session startup discipline
+- a `MEMORY.md` plus dated memory files for durable continuity
+- `ops/open-loops.md`, `ops/work-ledger.md`, and `ops/delegations.md` for actual operational truth
+- `ops/reviews/` for weekly/bi-weekly review artifacts
+- a scheduler reference file so cron jobs and recurring work are inspectable later
+
+The point is not to copy my files. The point is to understand the scope of the work. If all of the coordination only lives in prompts, it will drift.
+
+Also important: I am not publishing my private configs, settings, auth setup, or internal runtime details here. People do not need someone else’s secrets to understand the shape of the architecture.
+
 If someone wanted to build something similar in their own setup, my advice would be:
 
 1. start with one operator  
@@ -119,7 +149,8 @@ If someone wanted to build something similar in their own setup, my advice would
 3. route by bottleneck, not by vibes  
 4. require bounded outputs  
 5. keep human approval for consequential actions  
-6. let the system earn more autonomy over time instead of pretending it has it on day one  
+6. build a real file-backed operating layer  
+7. let the system earn more autonomy over time instead of pretending it has it on day one  
 
 That is a much more reliable path than trying to prompt one giant assistant into acting like a whole organization.
 
@@ -256,9 +287,61 @@ Things still go wrong:
 - taste still requires human judgment
 - some tasks look separable until they are not
 
+And after running this longer, a few more failure modes became obvious.
+
+### Under-delegation is real
+
+One of the easiest mistakes in a system like this is leaving too much work with the front-facing operator.
+
+That sounds backwards at first. If the operator is capable, why not just let it handle the thread?
+
+Because “can do it” is not the same thing as “should do it inline.” In practice, I found that config changes, runtime questions, deploy-path work, governance changes, and other system-touching threads were too easy to keep in the main lane for too long.
+
+That created a predictable problem: the team was strongest when routed work happened early, but heavier technical threads were still sometimes being handled like solo work with optional help later.
+
+So I ended up hardening the routing doctrine.
+
+For consequential domains like:
+
+- config
+- runtime / services / scheduler state
+- deploy / release path
+- governance or protocol changes
+- other hard-to-reverse operational surfaces
+
+…the system now treats those as **default-routed work**, not “delegate if it seems useful.”
+
+In practical terms, that means:
+
+- ops/system truth gets involved earlier
+- research/scoping gets involved earlier when there is real uncertainty
+- critique gets involved before meaningful governance or protected-core changes land
+
+That was a real correction, not a theoretical improvement.
+
+### Review cannot be optional
+
+Another thing I underestimated was how much the team needed its own review structure.
+
+It was not enough to say “these roles seem useful.” I eventually needed:
+
+- weekly self-reviews for each named lane
+- a bi-weekly orchestrator review
+- a running scoreboard of recent grades and trend notes
+- improvement items when a lane underperformed
+- a way to tighten or merge weak lanes instead of letting them become decorative
+
+That turned the system from a loose cast of recurring helpers into something closer to an accountable operating layer.
+
+### Scheduling needs a real source of truth
+
+If recurring review work matters, the schedule itself needs to be inspectable and real.
+
+The lesson there was simple: use one canonical runtime scheduler, document it, and make recurring artifacts visible. A shell script by itself is not a scheduler. An implicit habit is definitely not a scheduler.
+
 And none of this removes the need for human signoff on consequential actions.
 
-That is important enough to say plainly: the system works best when it is governed. Planning, review, approval, and cleanup are not incidental details. They are the difference between “interesting” and “actually usable.”
+That is important enough to say plainly: the system works best when it is governed. Planning, review, approval, cleanup, and recurring inspection are not incidental details. They are the difference between “interesting” and “actually usable.”
 
 ## Why I think this matters
 
@@ -287,6 +370,8 @@ My advice is simple:
 - keep real artifacts
 - build review into the system
 - use memory and files, not vibes
+- give recurring work a real scheduler and visible outputs
+- harden routing rules when you discover under-delegation
 - make the system earn more autonomy over time
 - don’t confuse a fun prompt setup with an operating model
 
